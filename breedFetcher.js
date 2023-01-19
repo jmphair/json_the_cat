@@ -16,7 +16,7 @@ const fetchBreedDescription = (breedName, callback) => {
       callback(`The ${breedName} can't be found`, null);
       return;
     }
-    if (data[0]) {
+    if (response.statusCode === 200) {
       callback(null, data[0].description);
     }    
 
