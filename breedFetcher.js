@@ -8,9 +8,14 @@ request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, res
   
 
   const data = JSON.parse(body);
-  // consider that the data variable is literally sitting in an array on the api site
-  // then we can use dot notation to access the description 
-  console.log(data[0].description);
+  if (!data[0]) {
+    console.log(`The ${breedName} can't be found`);
+    return;
+  }
+  if (data[0]) {
+    console.log(`Breed Description: ${data[0].description}`);
+    return;
+  }
 
 });
 
