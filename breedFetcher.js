@@ -5,8 +5,11 @@ const breedName = process.argv[2];
 
 // using the request function right out of the fetcher.js file but repurposing it
 request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, response, body) => {
-  
 
+  if (error) {
+    console.log('Error: ', error);
+    return;
+  }
   const data = JSON.parse(body);
   if (!data[0]) {
     console.log(`The ${breedName} can't be found`);
